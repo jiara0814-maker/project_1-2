@@ -98,7 +98,7 @@ elif selection == "2단계: 이탈의 임계점 분석":
     data_p2 = {
         'Group': ['Immediate Exit', 'Quick Scan', 'Standard Browse', 'Deep Consideration', 'Decision Fatigue'],
         'Churn_Rate(%)': [13.74, 14.63, 14.69, 15.72, 15.36],
-        'Abandon_Rate': [51.14, 51.31, 50.78, 52.12, 51.62],
+        'Abandon_Rate': [51.14, 51.31, 50.75, 52.15, 51.62],
         'Churn_in_Abandon': [14.07, 14.36, 15.06, 15.87, 15.33]
     }
     df_p2 = pd.DataFrame(data_p2)
@@ -107,12 +107,12 @@ elif selection == "2단계: 이탈의 임계점 분석":
     tab1, tab2, tab3 = st.tabs(["📊 사용자 그룹별 이탈률 분석", "📊 검색 포기자 내 이탈률 분석", "💡 인사이트 & 액션플랜"])
 
     with tab1:
-        st.subheader("사용자 그룹별 이탈률")
+        st.subheader("사용자 그룹별 검색 포기율 (Search Abandonment Rate)")
 
         # 📌 설명을 그래프 밖으로 분리
         st.markdown("""
         - **Deep Consideration (28–48초)**: 이탈률이 가장 크게 상승. 결정 붕괴가 행동 리스크(이탈)로 처음 전이되는 지점
-        - **Decision Fatigue (48초 이상)**: 즉각적인 이탈보다는 관여도가 높은 유저만 남는 전이 구간        
+        - **Decision Fatigue (48초 이상)**: 즉각적인 이탈보다는 관여도가 높은 유저만 남는 전이 구간     
         """)
         st.markdown("---")
 
@@ -121,9 +121,9 @@ elif selection == "2단계: 이탈의 임계점 분석":
         fig3 = px.bar(
             df_p2,
             x='Group',
-            y='Churn_Rate(%)',
-            text='Churn_Rate(%)',
-            title="Churn Rate by Search Duration Group",
+            y='Abandon_Rate',
+            text='Abandon_Rate',
+            title="Search Abandonment Rate by User Group",
             color='Group',
             color_discrete_sequence=colors
         )
@@ -135,17 +135,17 @@ elif selection == "2단계: 이탈의 임계점 분석":
 
         fig3.update_layout(
             showlegend=False,
-            yaxis_range=[12.5, 17],
+            yaxis_range=[50, 53],
             xaxis_title="User Group",
-            yaxis_title="Churn Rate (%)",
-            margin=dict(t=60, b=40)   # ✅ 여유 확보
+            yaxis_title="Abandonment Rate (%)",
+            margin=dict(t=60, b=40)
         )
 
         fig3.add_hline(
-            y=14.73,
+            y=51.19,
             line_dash="dash",
             line_color="blue",
-            annotation_text="Overall Avg (14.73%)",
+            annotation_text="Overall Average (51.19%)",
             annotation_position="top right"
         )
 
@@ -242,3 +242,4 @@ elif selection == "3단계: 실패 극복 효과 측정":
         * **페이지 개편:** '검색 결과 없음' 페이지를 '새로운 추천 섹션'으로 전환하여 클릭 유도.
 
     """)
+
