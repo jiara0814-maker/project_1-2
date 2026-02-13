@@ -122,8 +122,7 @@ elif selection == "2단계: 이탈의 임계점 분석":
             df_p2,
             x='Group',
             y='Churn_Rate(%)',
-            text='Churn_Rate(%)',
-            title="Churn Rate by Search Duration Group",
+            text='이탈률(%)',
             color='Group',
             color_discrete_sequence=colors
         )
@@ -168,7 +167,6 @@ elif selection == "2단계: 이탈의 임계점 분석":
             x='Group',
             y='Churn_in_Abandon',
             text='Churn_in_Abandon',
-            title="Churn Rate among Search Abandoners",
             color='Group',
             color_discrete_sequence=colors
         )
@@ -242,5 +240,6 @@ elif selection == "3단계: 실패 극복 효과 측정":
         * **페이지 개편:** '검색 결과 없음' 페이지를 '새로운 추천 섹션'으로 전환하여 클릭 유도.
 
     """)
+
 
 
